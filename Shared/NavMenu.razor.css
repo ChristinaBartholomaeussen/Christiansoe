@@ -1,0 +1,21 @@
+.navbar{
+    margin-bottom: 0px;
+}
+
+.navbarBackground{
+    background-color: var(--my-primary);
+}
+
+.my-nav-item{
+    margin-top: 0px;
+    padding: 10px 15px;
+    background-color: var(--my-primary);
+    width: 150px;
+    display: block;
+    text-align: center;
+    border-radius: 12px;
+}
+.my-nav-item:hover{
+    background-color: var(--my-secondary);
+    color: black;
+}
