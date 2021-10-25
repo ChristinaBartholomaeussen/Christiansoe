@@ -24,6 +24,10 @@ namespace christiansoe
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddHttpClient();
+            
+            
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 26));
             services.AddDbContext<ApplicationContext>(options =>
