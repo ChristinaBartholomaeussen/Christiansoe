@@ -27,6 +27,17 @@
     <link href="css/site.css" rel="stylesheet">
     <link href="christiansoe.styles.css" rel="stylesheet" />
     
+    <!-- MAP-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin="" /> 
+    
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+    
+    
   
     
 </head>
@@ -34,5 +45,7 @@
 <component type="typeof(App)" render-mode="ServerPrerendered"/>
 
 <script src="_framework/blazor.server.js"></script>
+<script src="scripts/mapjs.js"></script>
+
 </body>
 </html>

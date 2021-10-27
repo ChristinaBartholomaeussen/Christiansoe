@@ -28,32 +28,32 @@ namespace christiansoe
                 {
                     Id = 2,
                     Name = "Test2",
-                    Latitude = 1515151,
-                    Longitude = 484848
+                    Latitude = 55.32235829644045,
+                    Longitude = 15.187498428676713,
                     
                 },
                 new Attraction
                 {
                     Id = 3,
                     Name = "Test3",
-                    Latitude = 1515151,
-                    Longitude = 484848
+                    Latitude = 55.320211820087565,
+                    Longitude = 15.192855386557753
                     
                 },
                 new Attraction
                 {
                     Id = 4,
                     Name = "Test4",
-                    Latitude = 1515151,
-                    Longitude = 484848
+                    Latitude = 55.32057198952312,
+                    Longitude = 15.186922340149591
                     
                 },
                 new Attraction
                 {
                     Id = 5,
                     Name = "Test5",
-                    Latitude = 1515151,
-                    Longitude = 484848
+                    Latitude = 55.32118440469696,
+                    Longitude = 15.188906945432864
                     
                 });
             

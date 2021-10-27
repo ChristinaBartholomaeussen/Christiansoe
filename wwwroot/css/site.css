@@ -1,7 +1,5 @@
-#map {
-    width: 100%;
-    height: 100%;
-}
+#mapid { height: calc(100vh - 160px) }
+
 
 h1{
     font-family: myfont;

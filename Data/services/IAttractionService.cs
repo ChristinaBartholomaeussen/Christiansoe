@@ -9,6 +9,9 @@ namespace christiansoe.Data.services
     {
         public Task<List<Attraction>> GetAttraction();
 
+        public void SortAttractions(List<Attraction> attractions);
+
+
     }
     
 }

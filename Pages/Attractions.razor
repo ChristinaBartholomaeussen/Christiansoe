@@ -50,6 +50,7 @@
     protected override async Task OnInitializedAsync()
     {
         _attractions = await _attractionService.GetAttraction();
+        _attractionService.SortAttractions(_attractions);
     }
 
     private Dictionary<string, string> _replacementMap = new Dictionary<string, string>()
