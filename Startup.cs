@@ -1,11 +1,11 @@
 using System;
+using christiansoe.Data.services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using christiansoe.Data.services;
-using Microsoft.EntityFrameworkCore;
 
 namespace christiansoe
 {
@@ -25,14 +25,14 @@ namespace christiansoe
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddHttpClient();
-            
-            
+
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 26));
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("Default"), serverVersion));
-            
+
             services.AddScoped<IAttractionService, AttractionService>();
             services.AddMvc();
         }

@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using christiansoe.Data.models;
 using GeoCoordinatePortable;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace christiansoe.Data.services
 {
     public class AttractionService : IAttractionService
     {
-
         private readonly ApplicationContext _applicationContext;
-
+        
         public AttractionService(ApplicationContext applicationContext)
         {
             _applicationContext = applicationContext;
@@ -20,35 +18,43 @@ namespace christiansoe.Data.services
 
         public async Task<List<Attraction>> GetAttraction()
         {
-            await using var context = _applicationContext;
-            return context.Attractions.ToList();
+            // Dokumentation: https://www.thecodebuzz.com/efcore-dbcontext-cannot-access-disposed-object-net-core/
+            var attractions = await _applicationContext.Attractions.ToListAsync();
+            return attractions;
         }
-        
 
 
-        public void SortAttractions(List<Attraction> attractions)
+        public async Task<List<GeoCoordinate>> SortCoordinates(List<GeoCoordinate> geoCoordinates)
         {
-            //Ny liste med alle koordinater
-            List<GeoCoordinate> geoCoordinates = new List<GeoCoordinate>();
+            //Færgeterminalen - default det første element
+            var attractions = await _applicationContext.Attractions.ToListAsync();
+            var firstElement = attractions.First();
+            var defaultLatitude = firstElement.Latitude;
+            var defaultLongitude = firstElement.Longitude;
+            var defaultCoordinates = new GeoCoordinate(defaultLatitude, defaultLongitude);
 
-            //Adder attrationers lat + lon til geoListen
-            foreach (Attraction a in attractions)
+            //Originale liste 
+            var original = geoCoordinates;
+            
+            //kopi af koordinator 
+            var copy = new List<GeoCoordinate>();
+
+            while (original.Count != 0)
             {
-                geoCoordinates.Add(new GeoCoordinate(a.Latitude, a.Longitude));
+                var nearestCoord = original.Select(x =>
+                        new GeoCoordinate(x.Latitude, x.Longitude))
+                    .OrderBy(x => x.GetDistanceTo(defaultCoordinates))
+                    .First();
+                copy.Add(nearestCoord);
+
+                defaultCoordinates = nearestCoord;
+
+                original.Remove(nearestCoord);
+                
             }
 
-            var distancenBetween = geoCoordinates.Zip(geoCoordinates.Skip(1), 
-                (first, sec) => first.GetDistanceTo(sec));
-            
-            
-            foreach (var d in distancenBetween)
-            {
-                Console.WriteLine(d);
-            }
+            return copy;
 
-            
         }
-        
-
     }
 }

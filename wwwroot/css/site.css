@@ -1,45 +1,16 @@
-#mapid { height: calc(100vh - 160px) }
-
-
-h1{
-    font-family: myfont;
-    font-size: 40px;
+#mapid {
+    width: 75%; /* Can be in percentage also. */
+    height: 600px;
+    padding: 10px;
+    margin: 20px;
+    border-color: darkslategrey;
+    border: solid 3px;
 }
 
-.col-3{
-    display: flex;
-    justify-content: center;
+.selector-for-some-widget {
+    box-sizing: content-box;
 }
-.list-group-item{
-    width: 150px;
-}
-
-a{
-    color: black;
-    font-size: 14px;
-    text-decoration: none;
-}
-a:hover{
-    text-decoration: none;
-}
-
-
-
-.attractionList{
-    padding: 10px 15px;
-    background-color: var(--my-primary);
-    width: 75%;
-    display: flex;
-    justify-content: center;
-    border-radius: 12px;
-    margin: 15px;
-}
-.attractionList:hover{
-    background-color: var(--my-secondary);
-    color: black;
-}
-
-img{
+img {
     vertical-align: top;
     display: block;
     margin-left: auto;
@@ -49,22 +20,95 @@ img{
     height: 250px;
     margin-bottom: 15px;
 }
+
 .my-container {
     position: relative;
     text-align: center;
     color: white;
 }
 
-.centered{
+.centered {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-:root{
-    --my-primary: rgb(177, 230, 147);
-    --my-secondary:rgb(110, 203, 99);
+
+input{
+    margin-top: 20px;
+}
+
+.attractionList-checklist{
+    display: block;
+    padding: 5px;
+    margin: 20px;
+}
+
+h1 {
+    font-family: myfont;
+    font-size: 40px;
+}
+
+.row{
+    border:0px;
+    margin-right:0;
+    margin-left:0;
+    max-width:100%;}
+
+.border-bottom {
+    border-bottom: none;
+}
+.border-3{
+    border: none;
+}
+
+.col-3 {
+    display: flex;
+    justify-content: center;
+}
+
+.list-group-item {
+    width: 150px;
+}
+
+a {
+    color: black;
+    font-size: 14px;
+    text-decoration: none;
+    margin: auto;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+
+.attractionList {
+    padding: 10px 15px;
+    background: var(--my-primary);
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    border-radius: 12px;
+    margin: 15px;
+    text-align: center;
+}
+
+.attractionList:hover {
+    background: var(--my-secondary);
+    color: black;
+}
+
+
+
+
+
+
+:root {
+    --my-primary: rgb(73, 213, 28);
+    --my-secondary: rgb(65,176,55);
 }
 
 @font-face {

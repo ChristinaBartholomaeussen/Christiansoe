@@ -1,21 +1,31 @@
-.navbar{
+.navbar {
     margin-bottom: 0px;
+    height: 75px;
+    padding: 0;
 }
 
-.navbarBackground{
-    background-color: var(--my-primary);
+.navbarBackground {
+    background: rgb(59,182,48);
+    background: linear-gradient(90deg, rgba(59,182,48,1) 0%, rgba(67,223,14,1) 37%, rgba(0,216,250,1) 100%);
 }
 
-.my-nav-item{
+.my-nav-item {
     margin-top: 0px;
     padding: 10px 15px;
-    background-color: var(--my-primary);
+    background-color: transparent;
     width: 150px;
     display: block;
     text-align: center;
     border-radius: 12px;
 }
-.my-nav-item:hover{
+
+.my-nav-item:hover {
     background-color: var(--my-secondary);
     color: black;
+}
+.my-nav-item:active,
+.my-nav-item:focus{
+    text-decoration: none;
+    color: black;
+    background-color: var(--my-secondary)
 }

@@ -1,20 +1,17 @@
 ﻿@page "/attractions"
-
 @using christiansoe.Data.services
 @using christiansoe.Data.models
 @inject IAttractionService _attractionService;
 
-
 <div class="my-container">
     <img src="images/a-Christian havn luftfoto-min.jpg"/>
     <div class="centered">
-        <h1>Attraktioner</h1>  
+        <h1>Attraktioner</h1>
     </div>
-
 </div>
 
-   
-<div class="container">   
+<div class="container">
+
     <div class="row">
 
         @if (_attractions == null)
@@ -25,52 +22,49 @@
         {
             @foreach (var attraction in _attractions)
             {
-                string attractionLink = ReplaceChars(attraction.Name);
-                    
+                var attractionLink = ReplaceChars(attraction.Name);
+
                 <div class="col-3">
-                    <a href="/@attractionLink" class="attractionList">@attraction.Name</a>
+                    <div class="attractionList">
+                        <a href="/@attractionLink">@attraction.Name</a>
+                    </div>
                 </div>
             }
-
         }
     </div>
-        
-        
-        
 </div>
-
-
-
 
 
 @code {
 
     private List<Attraction> _attractions;
 
+
     protected override async Task OnInitializedAsync()
     {
         _attractions = await _attractionService.GetAttraction();
-        _attractionService.SortAttractions(_attractions);
     }
+    
 
-    private Dictionary<string, string> _replacementMap = new Dictionary<string, string>()
+
+    private readonly Dictionary<string, string> _replacementMap = new()
     {
         {"æ", "ea"},
         {"ø", "oe"},
         {"å", "aa"}
     };
-    
+
     private string ReplaceChars(string stringToEncode)
     {
-        string replacedString = stringToEncode;
-        
+        var replacedString = stringToEncode;
+
         foreach (var danishLetter in _replacementMap.Keys)
         {
             replacedString = replacedString.Replace(danishLetter, _replacementMap[danishLetter]);
         }
 
-        string[] stringToReturn = replacedString.Split(" ");
-        string newString = "";
+        var stringToReturn = replacedString.Split(" ");
+        var newString = "";
         foreach (var letter in stringToReturn)
         {
             newString = newString + letter;
@@ -78,8 +72,8 @@
 
         return newString.ToLower();
     }
-    
-    
+
+
 
 
 

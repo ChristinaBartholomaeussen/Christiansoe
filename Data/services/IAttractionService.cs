@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using christiansoe.Data.models;
+using GeoCoordinatePortable;
 
 namespace christiansoe.Data.services
 {
@@ -9,9 +9,6 @@ namespace christiansoe.Data.services
     {
         public Task<List<Attraction>> GetAttraction();
 
-        public void SortAttractions(List<Attraction> attractions);
-
-
+        public Task<List<GeoCoordinate>> SortCoordinates(List<GeoCoordinate> geoCoordinates);
     }
-    
 }

@@ -1,17 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Policy;
-using christiansoe.Data.models;
+﻿using christiansoe.Data.models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace christiansoe
 {
     public class ApplicationContext : DbContext
     {
-        public virtual DbSet<Attraction> Attractions { get; set; }
-        
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
-            : base(options) {}
+            : base(options)
+        {
+        }
+
+        public virtual DbSet<Attraction> Attractions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,42 +20,46 @@ namespace christiansoe
                 new Attraction
                 {
                     Id = 1,
-                    Name = "Store Tårn",
-                    Latitude = 55.32056080268012,
-                    Longitude = 15.186943327270084
+                    Name = "Færgeteminal",
+                    Latitude = 55.32022812133163, 
+                    Longitude = 15.186290774370555
                 }, new Attraction
                 {
                     Id = 2,
-                    Name = "Test2",
-                    Latitude = 55.32235829644045,
-                    Longitude = 15.187498428676713,
-                    
+                    Name = "Østerkær - Danmarks østligeste punkt",
+                    Latitude = 55.320205,
+                    Longitude = 15.192849
                 },
                 new Attraction
                 {
                     Id = 3,
-                    Name = "Test3",
-                    Latitude = 55.320211820087565,
-                    Longitude = 15.192855386557753
-                    
+                    Name = "Hestehytten",
+                    Latitude = 55.32226487709977,
+                    Longitude = 15.187511167143466
                 },
                 new Attraction
                 {
                     Id = 4,
-                    Name = "Test4",
-                    Latitude = 55.32057198952312,
-                    Longitude = 15.186922340149591
-                    
+                    Name = "Christians Ø Kirke",
+                    Latitude = 55.321274614803706,
+                    Longitude = 15.187012128055752
                 },
                 new Attraction
                 {
                     Id = 5,
-                    Name = "Test5",
-                    Latitude = 55.32118440469696,
-                    Longitude = 15.188906945432864
+                    Name = "Broen mellem Christiansø og Frederiksø",
+                    Latitude = 55.320439,
+                    Longitude = 15.186107
+                },
+                new Attraction
+                {
+                    
+                    Id = 6,
+                    Name = "Store Tårn",
+                    Latitude = 55.32056080268012,
+                    Longitude = 15.186943327270084
                     
                 });
-            
         }
     }
 }
