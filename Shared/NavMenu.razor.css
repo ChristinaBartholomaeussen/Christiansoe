@@ -4,13 +4,9 @@
     padding: 0;
 }
 
-.navbarBackground {
-    background: rgb(59,182,48);
-    background: linear-gradient(90deg, rgba(59,182,48,1) 0%, rgba(67,223,14,1) 37%, rgba(0,216,250,1) 100%);
-}
 
 .my-nav-item {
-    margin-top: 0px;
+    margin: 20px;
     padding: 10px 15px;
     background-color: transparent;
     width: 150px;
@@ -20,12 +16,12 @@
 }
 
 .my-nav-item:hover {
-    background-color: var(--my-secondary);
+    background-color: deepskyblue;
     color: black;
 }
 .my-nav-item:active,
 .my-nav-item:focus{
     text-decoration: none;
     color: black;
-    background-color: var(--my-secondary)
+    background-color: deepskyblue;
 }

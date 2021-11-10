@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blazorise.Extensions;
 using christiansoe.Data.models;
 using GeoCoordinatePortable;
 using Microsoft.EntityFrameworkCore;
@@ -24,36 +26,34 @@ namespace christiansoe.Data.services
         }
 
 
-        public async Task<List<GeoCoordinate>> SortCoordinates(List<GeoCoordinate> geoCoordinates)
+        public async Task<List<GeoCoordinate>> SortCoordinates(List<Attraction> attractionsInRoute)
         {
             //Færgeterminalen - default det første element
-            var attractions = await _applicationContext.Attractions.ToListAsync();
-            var firstElement = attractions.First();
-            var defaultLatitude = firstElement.Latitude;
-            var defaultLongitude = firstElement.Longitude;
-            var defaultCoordinates = new GeoCoordinate(defaultLatitude, defaultLongitude);
-
-            //Originale liste 
-            var original = geoCoordinates;
+            List<Attraction> allAttractions = await _applicationContext.Attractions.ToListAsync();
+            Attraction firstElement = allAttractions.First();
+            double startLatitude = firstElement.Latitude;
+            double startLongitude = firstElement.Longitude;
             
-            //kopi af koordinator 
-            var copy = new List<GeoCoordinate>();
+            GeoCoordinate startCoordinates = new GeoCoordinate(startLatitude, startLongitude);
+            
+            List<GeoCoordinate> geoCoordinates = new List<GeoCoordinate>();
 
-            while (original.Count != 0)
+            while (!attractionsInRoute.IsNullOrEmpty())
             {
-                var nearestCoord = original.Select(x =>
-                        new GeoCoordinate(x.Latitude, x.Longitude))
-                    .OrderBy(x => x.GetDistanceTo(defaultCoordinates))
+                var closestAttraction = attractionsInRoute.Select(a =>
+                        new GeoCoordinate(a.Latitude, a.Longitude))
+                    .OrderBy(a => a.GetDistanceTo(startCoordinates))
                     .First();
-                copy.Add(nearestCoord);
+                geoCoordinates.Add(closestAttraction);
 
-                defaultCoordinates = nearestCoord;
+                startCoordinates = closestAttraction;
 
-                original.Remove(nearestCoord);
+                attractionsInRoute.Remove(attractionsInRoute.Single(a => 
+                    a.Latitude == closestAttraction.Latitude  && a.Longitude == closestAttraction.Longitude));
                 
             }
 
-            return copy;
+            return geoCoordinates;
 
         }
     }

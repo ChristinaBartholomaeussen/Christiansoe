@@ -9,6 +9,6 @@ namespace christiansoe.Data.services
     {
         public Task<List<Attraction>> GetAttraction();
 
-        public Task<List<GeoCoordinate>> SortCoordinates(List<GeoCoordinate> geoCoordinates);
+        public Task<List<GeoCoordinate>> SortCoordinates(List<Attraction> attractions);
     }
 }

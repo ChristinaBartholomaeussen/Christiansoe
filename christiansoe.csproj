@@ -38,8 +38,4 @@
         <Folder Include="wwwroot\js" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Compile Remove="Data\models\Route.cs" />
-    </ItemGroup>
-
 </Project>

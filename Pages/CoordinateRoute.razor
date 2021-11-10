@@ -1,0 +1,139 @@
+﻿@page "/coordinate-route"
+@using christiansoe.Data.services
+@using christiansoe.Data.models
+@using GeoCoordinatePortable
+@using Newtonsoft.Json
+@inject IAttractionService _attractionService;
+@inject IJSRuntime _jsRuntime;
+
+
+<div class="my-container">
+    <img alt="" src="images/a-Christian havn luftfoto-min.jpg"/>
+    <div class="centered">
+        <h1>Koordiner din egen rute</h1>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col">
+        
+            @if (_attractions == null)
+            {
+                <p>Bla bla bla</p>
+            }
+            else
+            {
+                <EditForm Model="@_route" @onsubmit="OnSubmit">
+                    
+                    @foreach (var attraction in _attractions.Skip(1))
+                    {
+                        <div class="attractionList-checklist" >
+                            <input class="form-check-input me-1" type="checkbox" disabled="@CheckboxesIsDisabled"  
+                                   id="@attraction.Id" @onchange="(ev) => AddAttractionToRoute(attraction, ev)"/>
+                            <label for="@attraction.Id">@attraction.Name</label>
+                        </div>
+                    }
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn-class">Find rute</button>
+                    </div>
+                    
+                </EditForm>
+            }
+            
+            <div style="text-align: center">
+                <label  for="durationId">Turen tager: </label>
+                <input @bind-value="_secHours" style="width: 80px" id="durationId"/> minutter
+            </div>
+            
+            <div style="text-align: center;">
+                <button @onclick="ResetRoute" class="btn-class">Nulstil</button>
+            </div>
+            
+            
+            
+    </div>
+    
+    
+    <div id="mapid" class="col-7">
+    </div> 
+    
+</div>
+ 
+
+@code {
+    
+    private List<Attraction> _attractions;
+    private bool CheckboxesIsDisabled { get; set; }
+    
+    private Route _route = new ();
+
+    private void ResetRoute()
+    {
+        _jsRuntime.InvokeVoidAsync("ResetRoute");
+        CheckboxesIsDisabled = false;
+        
+    }
+    
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _attractions = await _attractionService.GetAttraction();
+    }
+    
+    private void AddAttractionToRoute(Attraction attraction, ChangeEventArgs ev)
+    {
+
+        if (ev.Value == null) return;
+        switch (ev.Value.ToString())
+        {
+            case "True":
+                _route.Attractions.Add(attraction);
+                _jsRuntime.InvokeVoidAsync("AddMarker", attraction.Latitude, attraction.Longitude);
+                break;
+            case "False" when _route.Attractions.Contains(attraction):
+                _route.Attractions.Remove(attraction);
+                _jsRuntime.InvokeVoidAsync("RemoveMarker", attraction.Latitude, attraction.Longitude);
+                break;
+        }
+        
+    }
+
+    private async Task<List<GeoCoordinate>> SortCoordinates()
+    {
+        return await _attractionService.SortCoordinates(_route.Attractions);
+    }
+
+    private string _secHours;
+    
+    private async Task OnSubmit()
+    {
+        var geoCoordinates = await SortCoordinates();
+        if (geoCoordinates.Count != 0)
+        {
+            var geoCoordinatesConverted = JsonConvert.SerializeObject(geoCoordinates);
+            var time = await _jsRuntime.InvokeAsync<double>("CallByC", geoCoordinatesConverted);
+            TimeSpan timeToConvert = TimeSpan.FromSeconds(time);
+            _secHours = timeToConvert.ToString(@"mm\:ss");
+            CheckboxesIsDisabled = true;
+        }
+        
+    }
+    
+
+
+    protected override async Task <Task> OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            CheckboxesIsDisabled = false;
+            await _jsRuntime.InvokeVoidAsync("GenerateMap", "#mapid");
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    
+    
+}

@@ -4,7 +4,7 @@
 @inject IAttractionService _attractionService;
 
 <div class="my-container">
-    <img src="images/a-Christian havn luftfoto-min.jpg"/>
+    <img alt="" src="images/a-Christian havn luftfoto-min.jpg"/>
     <div class="centered">
         <h1>Attraktioner</h1>
     </div>
@@ -20,7 +20,7 @@
         }
         else
         {
-            @foreach (var attraction in _attractions)
+            @foreach (var attraction in _attractions.Skip(1))
             {
                 var attractionLink = ReplaceChars(attraction.Name);
 
