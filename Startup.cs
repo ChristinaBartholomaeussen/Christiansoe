@@ -1,4 +1,5 @@
 using System;
+using Blazorise;
 using christiansoe.Data.services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace christiansoe
 {
@@ -24,17 +26,23 @@ namespace christiansoe
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddHttpClient();
-
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 26));
-            services.AddDbContext<ApplicationContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("Default"), serverVersion));
+            services.AddDbContext<ApplicationContext>(options => options.UseMySql(Configuration.GetConnectionString("Default"), serverVersion,
+
+                mySqlOptions =>
+                {
+                    mySqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 10,
+                        maxRetryDelay: TimeSpan.FromSeconds(30),
+                        errorNumbersToAdd: null);
+                }
+            ));
 
             services.AddScoped<IAttractionService, AttractionService>();
-            services.AddMvc();
+            services.AddBlazorise();
             
         }
 

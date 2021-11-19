@@ -7,7 +7,7 @@ namespace christiansoe.Data.services
 {
     public interface IAttractionService
     {
-        public Task<List<Attraction>> GetAttraction();
+        public Task<List<Attraction>> GetAttractions();
 
         public Task<List<GeoCoordinate>> SortCoordinates(List<Attraction> attractions);
     }

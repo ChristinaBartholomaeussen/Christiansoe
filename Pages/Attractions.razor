@@ -3,12 +3,6 @@
 @using christiansoe.Data.models
 @inject IAttractionService _attractionService;
 
-<div class="my-container">
-    <img alt="" src="images/a-Christian havn luftfoto-min.jpg"/>
-    <div class="centered">
-        <h1>Attraktioner</h1>
-    </div>
-</div>
 
 <div class="container">
 
@@ -42,7 +36,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _attractions = await _attractionService.GetAttraction();
+        _attractions = await _attractionService.GetAttractions();
     }
     
 

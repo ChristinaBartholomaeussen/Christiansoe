@@ -45,7 +45,7 @@ namespace christiansoe
                 new Attraction
                 {
                     Id = 4,
-                    Name = "Christians Ø Kirke",
+                    Name = "Christiansø Kirke",
                     Latitude = 55.321274614803706,
                     Longitude = 15.187012128055752,
                     IsChecked = false
@@ -65,6 +65,48 @@ namespace christiansoe
                     Name = "Store Tårn",
                     Latitude = 55.32056080268012,
                     Longitude = 15.186943327270084,
+                    IsChecked = false
+                },
+                new Attraction
+                {
+                   Id = 7,
+                   Name = "Hertugindens Bastion",
+                   Latitude = 55.32200805093684,
+                   Longitude = 15.190067317667005,
+                   IsChecked = false,
+                },
+                new Attraction
+                {
+                    Id = 8,
+                    Name = "Rantzaus Bastion",
+                    Latitude = 55.32316277540636,
+                    Longitude = 15.188298239819762,
+                    IsChecked = false,
+                },
+                new Attraction
+                {
+                    Id = 9,
+                    Name = "Mindet",
+                    Latitude = 55.32044,
+                    Longitude = 15.18939,
+                    IsChecked = false
+                    
+                },
+                new Attraction
+                {
+                    Id = 10,
+                    Name = "Christiansø Teltplads",
+                    Latitude = 55.32199,
+                    Longitude = 15.19008,
+                    IsChecked = false
+                    
+                },
+                new Attraction
+                {
+                    Id = 11,
+                    Name = "101 Trappen",
+                    Latitude = 55.32024,
+                    Longitude = 15.18649,
                     IsChecked = false
                 });
         }

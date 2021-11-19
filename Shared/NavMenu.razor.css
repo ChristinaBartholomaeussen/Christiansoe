@@ -1,27 +1,27 @@
-.navbar {
-    margin-bottom: 0px;
-    height: 75px;
-    padding: 0;
-}
 
-
-.my-nav-item {
+.my-nav-item{
     margin: 20px;
     padding: 10px 15px;
-    background-color: transparent;
-    width: 150px;
-    display: block;
-    text-align: center;
-    border-radius: 12px;
 }
 
-.my-nav-item:hover {
-    background-color: deepskyblue;
-    color: black;
+.my-nav-item ::deep a {
+    text-align: center;
+    background-color: transparent;
+    font-size: 20px;
+    border-radius: 12px;
+    width: 150px;
+    margin: 20px;
+    padding: 10px 15px;
 }
-.my-nav-item:active,
-.my-nav-item:focus{
+
+.my-nav-item ::deep a.active {
     text-decoration: none;
     color: black;
     background-color: deepskyblue;
 }
+
+.my-nav-item ::deep a:hover {
+    background-color: deepskyblue;
+    color: black;
+}
+

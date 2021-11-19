@@ -18,7 +18,7 @@ namespace christiansoe.Data.services
             _applicationContext = applicationContext;
         }
 
-        public async Task<List<Attraction>> GetAttraction()
+        public async Task<List<Attraction>> GetAttractions()
         {
             // Dokumentation: https://www.thecodebuzz.com/efcore-dbcontext-cannot-access-disposed-object-net-core/
             var attractions = await _applicationContext.Attractions.ToListAsync();
