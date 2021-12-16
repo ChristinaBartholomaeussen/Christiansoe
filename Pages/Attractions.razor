@@ -6,7 +6,7 @@
 
 <div class="container">
 
-    <div class="row">
+    <div class="row d-flex">
 
         @if (_attractions == null)
         {
@@ -18,9 +18,9 @@
             {
                 var attractionLink = ReplaceChars(attraction.Name);
 
-                <div class="col-3">
+                <div class="col-sm-3 d-flex justify-content-center">
                     <div class="attractionList">
-                        <a href="/@attractionLink">@attraction.Name</a>
+                        <a class="d-flex align-items-center" href="/@attractionLink">@attraction.Name</a>
                     </div>
                 </div>
             }
@@ -32,14 +32,11 @@
 @code {
 
     private List<Attraction> _attractions;
-
-
+    
     protected override async Task OnInitializedAsync()
     {
         _attractions = await _attractionService.GetAttractions();
     }
-    
-
 
     private readonly Dictionary<string, string> _replacementMap = new()
     {
@@ -66,9 +63,5 @@
 
         return newString.ToLower();
     }
-
-
-
-
-
+    
 }

@@ -5,17 +5,22 @@
     border: none;
 }
 
-.leaflet-control-browser-print {
-    display: none!important;
+main {
+    min-height: 100vh;
 }
 
-.row{
-    border:0;
-    margin-right:0;
-    margin-left:0;
-    max-width:100%;
-    padding-left: 0;
-    padding-right: 0;
+.image-container {
+    text-align: center;
+    background: url("../images/a-Christian havn luftfoto-min.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 14rem;
+}
+
+.leaflet-control-browser-print {
+    display: none!important;
 }
 
 @media print {
@@ -36,22 +41,11 @@
     }
 }
 
-
-
-
-
-
 .attractionList-checklist{
     display: block;
     padding: 10px;
     margin: 20px;
     text-align: left;
-   
-}
-
-h1 {
-    font-family: myfont;
-    font-size: 100px;
 }
 
 
@@ -59,26 +53,13 @@ h1 {
     border-bottom: none;
 }
 
-.img-fluid{
-    max-width: 60%;
-    min-height: 60%;
-    
-}
-
-.col-3 {
-    display: flex;
-    justify-content: center;
-}
 
 .list-group-item {
     width: 150px;
 }
 
 a {
-    color: black;
-    font-size: 14px;
     text-decoration: none;
-    margin: auto;
 }
 
 a:hover {
@@ -97,6 +78,9 @@ a:hover {
     border-radius: 12px;
     margin: 15px;
     text-align: center;
+}
+.attractionList a {
+    color: darkslategrey;
 }
 
 .attractionList:hover {
@@ -119,8 +103,6 @@ a:hover {
 .btn-class:disabled {
     background: lightgray;
 }
-
-
 
 
 :root {

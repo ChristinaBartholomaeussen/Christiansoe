@@ -1,8 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Mvc.RazorPages
 
-<img alt="" class="top-img" src="images/a-Christian havn luftfoto-min.jpg"/>
-<div class="centered">
-    <h1> @Text </h1>
+<div class="container-fluid d-flex align-items-center justify-content-center image-container">
+    <h1 style="font-family: myfont; font-size: 6rem; color: cornsilk">
+        @Text
+    </h1>
 </div>
 
 @code{
@@ -28,7 +29,7 @@
                 case "Attractions":
                     Text = "Attraktioner";
                     break;
-                case "storetaarn":
+                case "Storetaarn":
                     Text = "Store Tårn";
                     break;
                         

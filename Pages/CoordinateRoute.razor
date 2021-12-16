@@ -6,26 +6,17 @@
 @inject IAttractionService _attractionService;
 @inject IJSRuntime _jsRuntime;
 
-
-
-
-
-<div class="row">
-    <div class="col-4">
-
-        <div style="text-align: center; margin: 20px">
+<div class="row d-flex my-3">
+    <div class="col-sm-4">
+        <div class="text-center">
             
-        
             <p>Vælg de attaktioner fra listen, du ønsker at se.</p>
             <p>Turen starter altid fra færgeterminalen</p>
-        
-            <div style="text-align: center">
+
+            <div class="text-center">
                 @if (Attractions == null)
                 {
-            
-                    <div class="spinner-border m-5" role="status"></div> 
-            
-            
+                    <div class="spinner-border m-5" role="status"></div>
                 }
                 else
                 {
@@ -38,63 +29,42 @@
                                 <label for="@attraction.Id">@attraction.Name</label>
                             </div>
                         }
-                        
+
                         <button type="submit" class="btn-class" disabled="@CheckboxesIsDisabled">Find rute</button>
                         <button @onclick="ResetRoute" class="btn-class">Nulstil</button>
                         <br>
                         <label for="durationId">Estimeret (minutter): </label>
                         <input disabled="disabled" @bind-value="_route.Duration" style="width: fit-content" id="durationId"/>
-                        
+
                     </EditForm>
                 }
-
-
             </div>
-            
-            
-            
         </div>
     </div>
-    
-    <div class="col-8" style="text-align: center">
+
+    <div class="col-sm-8 text-center">
         <div @ref=_map id="mapId">
-            
+
         </div>
         <button type="button" class="btn-class" @onclick="DownloadRoute" disabled="@DownloadButtonIsDisabled">Download rute</button>
     </div>
-    
-    
-
 </div>
 
-
-
-
-
-
 @code {
-     ElementReference _map;
-    
-    
+    ElementReference _map;
+
     private void DownloadRoute()
     {
         _jsRuntime.InvokeVoidAsync("fullscreen");
 
     }
-
-
-   
-    
     
     private List<Attraction> Attractions { get; set; }
     private bool CheckboxesIsDisabled { get; set; }
     private Route _route = new ();
     
     private bool DownloadButtonIsDisabled { get; set; } = true;
-
     
-    
-
     private void ResetRoute()
     {
         _jsRuntime.InvokeVoidAsync("resetRoute.ResetRoute");
@@ -102,15 +72,13 @@
         DownloadButtonIsDisabled = true;
         _route = new Route();
     }
-    
-    
+
     protected override async Task OnInitializedAsync()
     {
         await Task.Run(LoadAttractions);
         await base.OnInitializedAsync();
     }
     
-
     private async Task LoadAttractions()
     {
         Attractions = await _attractionService.GetAttractions();
