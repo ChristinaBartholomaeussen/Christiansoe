@@ -1,14 +1,21 @@
 @using Blazorise
 @inherits LayoutComponentBase
 
-<main>
-    <NavMenu/>
+<NavMenu/>
+
+<main>  
     <NavImage PageType="@PageType"/>
-    
     <div class="container">
         @Body
     </div>
-</main>
+ </main>  
+
+<footer>
+    <NavFooter/>
+</footer>
+
+    
+
 
 @code{
     

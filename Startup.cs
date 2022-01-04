@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
 
 namespace christiansoe
 {
@@ -26,7 +26,6 @@ namespace christiansoe
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 26));

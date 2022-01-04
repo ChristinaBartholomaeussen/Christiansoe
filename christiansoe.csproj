@@ -12,28 +12,21 @@
 
     <ItemGroup>
         <PackageReference Include="Blazorise.Bootstrap" Version="0.9.4.6" />
-        <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.4.6" />
+        <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.5.2" />
         <PackageReference Include="GeoCoordinate.NetStandard1" Version="1.0.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.11" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.11" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.11" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.11">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.13" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
-        <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-        <PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.2" />
     </ItemGroup>
 
     <ItemGroup>
         <Folder Include="Migrations" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="wwwroot\audio\Edderfugl i yngledragt.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

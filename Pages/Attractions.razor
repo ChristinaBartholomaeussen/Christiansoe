@@ -3,26 +3,29 @@
 @using christiansoe.Data.models
 @inject IAttractionService _attractionService;
 
-
 <div class="container">
-
-    <div class="row d-flex">
+    
+    <div class="row my-5">
 
         @if (_attractions == null)
         {
-            <p>Bla bla bla</p>
+            <div class="col my-5 d-flex justify-content-center">
+               <div class="loader"></div> 
+            </div>
         }
         else
         {
-            @foreach (var attraction in _attractions.Skip(1))
+            @foreach (Attraction attraction in _attractions.Skip(1))
             {
-                var attractionLink = ReplaceChars(attraction.Name);
-
-                <div class="col-sm-3 d-flex justify-content-center">
-                    <div class="attractionList">
-                        <a class="d-flex align-items-center" href="/@attractionLink">@attraction.Name</a>
+                string attractionLink = ReplaceChars(attraction.Name);
+                
+                    <div class="card my-3">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                <a href="/@attractionLink">@attraction.Name <i class="bi bi-info-square" style="float: right"></i></a>
+                            </h3>
+                        </div>
                     </div>
-                </div>
             }
         }
     </div>
@@ -36,6 +39,7 @@
     protected override async Task OnInitializedAsync()
     {
         _attractions = await _attractionService.GetAttractions();
+        //_attractions = null;
     }
 
     private readonly Dictionary<string, string> _replacementMap = new()
@@ -47,18 +51,18 @@
 
     private string ReplaceChars(string stringToEncode)
     {
-        var replacedString = stringToEncode;
+        string replacedString = stringToEncode;
 
-        foreach (var danishLetter in _replacementMap.Keys)
+        foreach (string danishLetter in _replacementMap.Keys)
         {
             replacedString = replacedString.Replace(danishLetter, _replacementMap[danishLetter]);
         }
 
-        var stringToReturn = replacedString.Split(" ");
-        var newString = "";
-        foreach (var letter in stringToReturn)
+        string[] stringToReturn = replacedString.Split(" ");
+        string newString = "";
+        foreach (string letter in stringToReturn)
         {
-            newString = newString + letter;
+            newString += letter;
         }
 
         return newString.ToLower();

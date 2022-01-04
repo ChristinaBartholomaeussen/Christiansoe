@@ -20,12 +20,10 @@ namespace christiansoe.Data.services
 
         public async Task<List<Attraction>> GetAttractions()
         {
-            // Dokumentation: https://www.thecodebuzz.com/efcore-dbcontext-cannot-access-disposed-object-net-core/
             var attractions = await _applicationContext.Attractions.ToListAsync();
             return attractions;
         }
-
-
+        
         public async Task<List<GeoCoordinate>> SortCoordinates(List<Attraction> attractionsInRoute)
         {
             //Færgeterminalen - default det første element
