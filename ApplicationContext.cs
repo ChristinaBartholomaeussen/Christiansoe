@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using christiansoe.Data.models;
+﻿using christiansoe.Data.models;
 using Microsoft.EntityFrameworkCore;
 
 namespace christiansoe
