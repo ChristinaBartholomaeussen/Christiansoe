@@ -1,0 +1,58 @@
+@page "/østerkear-danmarksoestligestepunkt"
+@inject IJSRuntime _jsRuntime;
+
+<div class="row d-flex justify-content-center my-3">
+    <div class="card mb-3">
+        <div class="row">
+            <div class="card-header text-center">
+                <h3>Østerkær - Danmarks østligeste punkt</h3>
+            </div>
+
+            <div class="col-md-4 my-2">
+                <img src="images/fugl7457.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body" style="min-height: 550px">
+                    <p class="card-text">
+                        Med over 15.000 par ynglende fugle og store mængder trækfugle er Ertholmene også fuglenes øer. De mange fugle ruger på Ertholmene, fordi de her får opfyldt deres to basale krav til ynglepladsen: Mad og fred.
+                        De fleste af ynglefuglene er hav- og kystfugle, fx alk, lomvie, sølvmåge og edderfugl. Alk og lomvie er ægte havfugle, der kun kommer på land i yngletiden.
+                        <br/><br/>
+                        Sølvmåger, alke og lomvier ruger på Græsholm, der er reservat med adgangsforbud. Hovedparten af edderfuglene ruger på de beboede øer, selv i haver og tæt på befærdede stier.
+                        <br/><br/>
+                        Edderfuglene lever mest af blåmuslinger, mens alke og lomvier især æder brisling – en lille sildefisk, som er talrig omkring øerne.
+                        <br/><br/>
+                        Kort efter edderfugleællingerne er klækket, svømmer de i småflokke sammen med hunnerne til Bornholm, hvor der er mere mad til ungerne i form af tanglopper og småmuslinger.
+                        I edderfuglenes yngletid 1. april-15. juni er færdsel udenfor murene ikke tilladt
+                        Læs mere i vores færdselsregler
+                        Gennem årene er der registreret 52 forskellige ynglende fuglearter på Ertholmene, men kun 25 arter yngler fast på øerne. De mest almindelige ynglende småfugle er solsort, vipstjert, tornirisk, gråspurv, landsvale og bysvale.
+                        <br/><br/>
+                        Der har i over 40 år været en feltstation på Christiansø. Stationen forsker i fuglene og øernes natur.
+                    </p>
+                    <h2 id="play" type="button" @onclick="PlaySound" class="text-center play-pause">
+                        <i id="play-icon" class="bi bi-play-circle"></i> 
+                       
+                    </h2>
+                    <h2 id="pause" type="button" @onclick="PauseSound" class="text-center play-pause" style="visibility: hidden">
+                        <i id="pause-icon" class="bi bi-pause-circle" ></i>
+                    </h2>
+                    
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+@code {
+    
+    private void PlaySound()
+    {
+        _jsRuntime.InvokeVoidAsync("playAudio");
+    }
+
+    private void PauseSound()
+    {
+        _jsRuntime.InvokeVoidAsync("pauseAudio");
+    }
+    
+}
