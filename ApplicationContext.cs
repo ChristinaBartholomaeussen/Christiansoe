@@ -70,9 +70,10 @@ namespace christiansoe
                 {
                    Id = 7,
                    Name = "Hertugindens Bastion",
-                   Latitude = 55.32200805093684,
-                   Longitude = 15.190067317667005,
+                   Latitude = 55.32202550128021,
+                   Longitude = 15.190051203380062,
                    IsChecked = false,
+                   
                 },
                 new Attraction
                 {
