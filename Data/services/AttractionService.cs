@@ -20,7 +20,7 @@ namespace christiansoe.Data.services
 
         public async Task<List<Attraction>> GetAttractions()
         {
-            var attractions = await _applicationContext.Attractions.ToListAsync();
+            List<Attraction> attractions = await _applicationContext.Attractions.ToListAsync();
             return attractions;
         }
         

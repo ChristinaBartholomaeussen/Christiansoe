@@ -21,7 +21,7 @@
                 else
                 {
                     <EditForm Model="@_route" OnValidSubmit="@OnSubmit">
-                        @foreach (var attraction in Attractions.Skip(1))
+                        @foreach (Attraction attraction in Attractions.Skip(1))
                         {
                             <div class="attractionList-checklist">
                                 <input class="form-check-input me-1" type="checkbox" disabled="@CheckboxesIsDisabled"
@@ -43,7 +43,7 @@
     </div>
 
     <div class="col-sm-8 text-center">
-        <div @ref=_map id="mapId">
+        <div @ref="_map" id="mapId">
 
         </div>
         <button type="button" class="btn-class" @onclick="DownloadRoute" disabled="@DownloadButtonIsDisabled">Download rute</button>
@@ -111,12 +111,12 @@
     
     private async Task OnSubmit()
     {
-        var geoCoordinates = await SortCoordinates();
+        List<GeoCoordinate> geoCoordinates = await SortCoordinates();
         if (geoCoordinates.Count != 0)
         {
-            var geoCoordinatesConverted = JsonConvert.SerializeObject(geoCoordinates);
-            var time = await _jsRuntime.InvokeAsync<double>("createRoute.CallByC", geoCoordinatesConverted);
-            var timeToConvert = TimeSpan.FromSeconds(time);
+            string geoCoordinatesConverted = JsonConvert.SerializeObject(geoCoordinates);
+            double time = await _jsRuntime.InvokeAsync<double>("createRoute.CallByC", geoCoordinatesConverted);
+            TimeSpan timeToConvert = TimeSpan.FromSeconds(time);
             _route.Duration = timeToConvert.ToString(@"mm\:ss");
             CheckboxesIsDisabled = true;
             DownloadButtonIsDisabled = false;

@@ -4,7 +4,8 @@ namespace christiansoe.Data.models
 {
     public class Route
     {
-        public List<Attraction> Attractions = new List<Attraction>();
+        //vi bruges readonly, fordi vi kun skal kunne læse den
+        public readonly List<Attraction> Attractions = new();
         public string Duration { get; set; }
 
     }
